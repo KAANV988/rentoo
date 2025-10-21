@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details - Rentoo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-blue-600">Rentoo</a>
+            <!-- Auth buttons will be dynamically managed if needed -->
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="property-detail-container" class="container mx-auto px-6 py-12">
+        <!-- Loading State -->
+        <p id="loading-message" class="text-center text-gray-500">Loading property details...</p>
+        
+        <!-- Property details will be dynamically inserted here -->
+
+    </main>
+
+    <script src="property.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Rentoo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-blue-600">Rentoo</a>
+            <div id="userActions" class="flex items-center space-x-4">
+                <!-- Links will be dynamically managed by profile.js -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">My Profile</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Profile Information Card -->
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                
+                <!-- View State -->
+                <div id="viewProfileSection">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-semibold text-gray-700">My Details</h2>
+                        <button id="editProfileBtn" class="text-blue-600 hover:underline">Edit</button>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-500">Full Name</label>
+                            <p id="viewFullName" class="mt-1 text-lg text-gray-900"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-500">Email Address</label>
+                            <p id="viewEmail" class="mt-1 text-lg text-gray-900"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-500">Phone Number</label>
+                            <p id="viewPhoneNumber" class="mt-1 text-lg text-gray-900"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit State (Initially Hidden) -->
+                <div id="editProfileSection" class="hidden">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-6">Update My Details</h2>
+                    <form id="updateProfileForm" class="space-y-4">
+                        <div>
+                            <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" class="mt-1 w-full px-4 py-2 border rounded-md" required>
+                        </div>
+                        <div>
+                            <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" class="mt-1 w-full px-4 py-2 border rounded-md" required>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button type="button" id="cancelEditBtn" class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Cancel</button>
+                            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">Save Changes</button>
+                        </div>
+                        <p id="updateProfileMessage" class="text-center text-sm mt-4"></p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Change Password Card -->
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6">Change Password</h2>
+                <form id="changePasswordForm" class="space-y-4">
+                    <div>
+                        <label for="currentPassword" class="block text-sm font-medium text-gray-700">Current Password</label>
+                        <input type="password" id="currentPassword" name="currentPassword" class="mt-1 w-full px-4 py-2 border rounded-md" required>
+                    </div>
+                    <div>
+                        <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
+                        <input type="password" id="newPassword" name="newPassword" class="mt-1 w-full px-4 py-2 border rounded-md" required>
+                    </div>
+                    <div>
+                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="mt-1 w-full px-4 py-2 border rounded-md" required>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">Update Password</button>
+                    <p id="changePasswordMessage" class="text-center text-sm mt-4"></p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="profile.js"></script>
+</body>
+</html>

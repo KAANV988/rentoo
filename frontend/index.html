@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rentoo - Find Your Next Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .animate-on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        #toggleFiltersBtn i { transition: transform 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-blue-600">Rentoo</a>
+            <div class="flex items-center space-x-4">
+                <div id="userActions" class="hidden items-center space-x-4">
+                    <a id="profileLink" href="profile.html" class="text-gray-600 hover:text-blue-600 font-medium">My Profile</a>
+                    <a id="dashboardLink" href="dashboard.html" class="hidden text-gray-600 hover:text-blue-600 font-medium">My Dashboard</a>
+                    <span id="welcomeMessage" class="text-gray-700 font-medium"></span>
+                    <button id="logOutButton" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Log Out</button>
+                </div>
+                <div id="authActions">
+                    <button id="logInButton" class="text-gray-600 hover:text-blue-600">Log In</button>
+                    <button id="signUpButton" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Sign Up</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section with Advanced Search -->
+        <section class="bg-blue-600 text-white text-center py-20">
+            <div class="container mx-auto px-6">
+                <h1 class="text-5xl font-extrabold mb-4 animate-on-scroll">Find Your Next Home</h1>
+                <p class="text-xl mb-8 animate-on-scroll">The best properties for rent in your city, just a click away.</p>
+                <div class="mt-8 max-w-3xl mx-auto animate-on-scroll">
+                    <form id="searchForm" class="bg-white/20 backdrop-blur-md rounded-lg shadow-lg p-4">
+                        <div class="flex items-center bg-white rounded-full border border-gray-200 p-2 mb-4">
+                            <input name="searchInput" id="searchInput" type="text" placeholder="Enter a city, neighborhood, or address..." class="w-full bg-transparent px-4 py-2 text-gray-700 focus:outline-none">
+                            <button type="submit" class="bg-blue-600 text-white rounded-full px-8 py-3 hover:bg-blue-700">Search</button>
+                        </div>
+                        
+                        <div class="text-center mb-4">
+                            <button type="button" id="toggleFiltersBtn" class="text-white hover:underline">More Filters <i class="fas fa-chevron-down ml-1"></i></button>
+                        </div>
+
+                        <div id="advancedFilters" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-gray-700">
+                            <div>
+                                <label for="minPrice" class="block text-sm font-medium text-white">Min Price</label>
+                                <input type="number" id="minPrice" name="minPrice" placeholder="Any" class="mt-1 w-full p-2 border rounded-md">
+                            </div>
+                             <div>
+                                <label for="maxPrice" class="block text-sm font-medium text-white">Max Price</label>
+                                <input type="number" id="maxPrice" name="maxPrice" placeholder="Any" class="mt-1 w-full p-2 border rounded-md">
+                            </div>
+                            <div>
+                                <label for="minBeds" class="block text-sm font-medium text-white">Min Beds</label>
+                                <select id="minBeds" name="minBeds" class="mt-1 w-full p-2 border rounded-md">
+                                    <option value="">Any</option>
+                                    <option value="1">1+</option>
+                                    <option value="2">2+</option>
+                                    <option value="3">3+</option>
+                                    <option value="4">4+</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="minBaths" class="block text-sm font-medium text-white">Min Baths</label>
+                                <select id="minBaths" name="minBaths" class="mt-1 w-full p-2 border rounded-md">
+                                    <option value="">Any</option>
+                                    <option value="1">1+</option>
+                                    <option value="2">2+</option>
+                                    <option value="3">3+</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Properties Section -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <h2 id="listings-title" class="text-3xl font-bold text-center text-gray-800 mb-12 animate-on-scroll">Featured Properties</h2>
+                <div id="property-listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Property cards will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Sign Up Modal -->
+    <div id="signUpModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Create Your Account</h2>
+                <button id="closeSignUpModal" class="text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+            </div>
+            <form id="signUpForm" class="space-y-4">
+                <input type="text" name="fullName" placeholder="Full Name" class="w-full px-4 py-2 border rounded-md" required>
+                <input type="email" name="email" placeholder="Email Address" class="w-full px-4 py-2 border rounded-md" required>
+                <input type="password" name="password" placeholder="Password" class="w-full px-4 py-2 border rounded-md" required>
+                <input type="tel" name="phoneNumber" placeholder="Phone Number" class="w-full px-4 py-2 border rounded-md" required>
+                <select name="role" class="w-full px-4 py-2 border rounded-md" required>
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="RENTER">I want to rent a house</option>
+                    <option value="OWNER">I want to list my house</option>
+                </select>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">Create Account</button>
+                <p id="signUpMessage" class="text-center text-sm mt-4"></p>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Log In Modal -->
+    <div id="logInModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Welcome Back!</h2>
+                <button id="closeLogInModal" class="text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+            </div>
+            <form id="logInForm" class="space-y-4">
+                <input type="text" name="username" placeholder="Email or Phone Number" class="w-full px-4 py-2 border rounded-md" required>
+                <input type="password" name="password" placeholder="Password" class="w-full px-4 py-2 border rounded-md" required>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">Log In</button>
+                 <p id="logInMessage" class="text-center text-sm mt-4"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
